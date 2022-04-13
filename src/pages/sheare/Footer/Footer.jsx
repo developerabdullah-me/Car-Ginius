@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            <p>Copyright {(new Date().getFullYear())}</p>
+            <p className="text-center bg-dark  text-white p-3">Copyright © {(new Date().getFullYear())}</p>
         </div>
     );
 };
