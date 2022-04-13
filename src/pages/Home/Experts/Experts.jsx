@@ -21,7 +21,7 @@ const Experts = () => {
         <div>
              
             <h1 className="text-center text-primary">Our Experts</h1>
-            <div className="row">
+            <div className="row container mx-auto">
               {
                     experts.map(expert=> <Expert expert={expert} key={expert.id}></Expert>)
               } 
