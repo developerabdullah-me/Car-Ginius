@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import Service from '../Service/Service';
 
 const Servieces = () => {
   const [services,setServices]=useState([])
-  useEffect(() =>{
-      
-  },[])
+  useEffect( ()=>{
+    fetch('services.json')
+    .then(res => res.json())
+    .then(data => setServices(data));
+}, [])
     return (
         <div>
-          
+        {
+            services.map(service => <Service service={service}></Service>)
+        }
         </div>
     );
 };
