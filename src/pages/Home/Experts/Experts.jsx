@@ -1,23 +1,31 @@
 import React from 'react';
-import Expert1 from'../../../images/experts/expert-1.jpg'
-import Expert2 from'../../../images/experts/expert-2.jpg'
-import Expert3 from'../../../images/experts/expert-3.jpg'
-import Expert4 from'../../../images/experts/expert-4.jpg'
-import Expert5 from'../../../images/experts/expert-5.jpg'
-import Expert6 from'../../../images/experts/expert-6.png'
 
-const experts=[
-    {id: 1, name: 'M.salah', img: 'Expert1'},
-    {id: 2, name: 'M.Babor', img: 'Expert2'},
-    {id: 3, name: 'M.Imam', img: 'Expert3'},
-    {id: 4, name: 'M.Hasi Amla', img: 'Expert4'},
-    {id: 5, name: 'M.Injimam', img: 'Expert5'},
-    {id: 6, name: 'M.ujil', img: 'Expert6'},
+import expert1 from '../../../images/experts/expert-1.jpg';
+import expert2 from '../../../images/experts/expert-2.jpg';
+import expert3 from '../../../images/experts/expert-3.jpg';
+import expert4 from '../../../images/experts/expert-4.jpg';
+import expert5 from '../../../images/experts/expert-5.jpg';
+import expert6 from '../../../images/experts/expert-6.png';
+import Expert from '../Expert/Expert';
+
+const experts = [
+    {id: 1, name: 'Will Smith', img: expert1},
+    {id: 2, name: 'Chris Rock', img: expert2},
+    {id: 3, name: 'Dwayne Rock', img: expert3},
+    {id: 4, name: 'Messy Vai', img: expert4},
+    {id: 5, name: 'Ronaldo Bro', img: expert5},
+    {id: 6, name: 'Stachy Jhonson', img: expert6},
 ]
 const Experts = () => {
     return (
         <div>
+             
             <h1 className="text-center text-primary">Our Experts</h1>
+            <div className="row">
+              {
+                    experts.map(expert=> <Expert expert={expert} key={expert.id}></Expert>)
+              } 
+            </div>
         </div>
     );
 };
