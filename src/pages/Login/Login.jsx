@@ -1,14 +1,19 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const emailRef=useRef('')
     const passwordRef=useRef('')
+    const naviGate=useNavigate()
     const handelSubmit=event=>{
         event.preventDefault();
         const email =emailRef.current.value;
         const password =passwordRef.current.value;
         console.log(email,password);
+    }
+    const naviGateRegister=event=>{
+        naviGate('/register')
     }
     return (
         <div>
@@ -35,6 +40,7 @@ const Login = () => {
     Submit
   </Button>
 </Form>
+<p>New Car Genius?<span className="text-danger" onclick={naviGateRegister}>please register</span></p>
             </div>
         </div>
     );
