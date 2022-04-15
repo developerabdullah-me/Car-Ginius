@@ -35,10 +35,14 @@ const SingUp = () => {
                 <input type="password" name="password" placeholder="type your password" required/><br />
                 <input type="password" name="name" placeholder="type your confirm password" required/><br />
                 <input type="number" name="number" placeholder="type your number" required/><br />
-                <input type="submit" value="submit" />
+                <input type="checkbox" name="terms" id="" />
+               <div className="d-flex align-items-center">
+               <input type="submit" value="Register" />
+                <label>Accept car Genius  terms and conditions</label>
+               </div>
                 </form>
                 <p>
-         all ready register
+           all ready register
           <Link
             to="/login "
             className="text-danger"

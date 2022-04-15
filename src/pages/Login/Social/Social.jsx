@@ -13,7 +13,7 @@ const Social = () => {
     if (user || user1){
         navigate('/home')
     }
-let elementErrors ;
+  let elementErrors ;
     if (error || error1) {
         elementErrors= <div>
             <p>Error: {error?.message} {error1?.message}</p>

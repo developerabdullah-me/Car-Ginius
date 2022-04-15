@@ -3,7 +3,6 @@ import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import Social from "./Social/Social";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -23,6 +22,12 @@ const Login = () => {
   };
   if(user){
       naviGate('/home')
+  }
+  let elementErrors ;
+  if (error) {
+      elementErrors= <div>
+          <p>Error: {error?.message} </p>
+          </div>
   }
   const naviGateRegister = (event) => {
     naviGate("/register");
@@ -72,7 +77,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <Social></Social>
+      {elementErrors}
     </div>
   );
 };
