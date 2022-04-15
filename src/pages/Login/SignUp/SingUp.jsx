@@ -1,38 +1,49 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import './SignUp.css'
+import Social from '../Social/Social';
 const SingUp = () => {
-    const naviGate=useNavigate()
+    const navigate=useNavigate()
     const naviGatelogin=event=>{
-        naviGate('/register')
+      navigate('/register')
     }
+    const [updateProfile, updating, updateerror] = useUpdateProfile(auth);
+    const location=useLocation()
+    let from = location.state?.from?.pathname || "/";
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
       const [agree,setAgree]=useState([])
       if(user){
-          naviGate('/home')
+        // navigate(from, { replace: true });
+        console.log(user);
       }
 
-      const handleRegister = event =>{
+      const handleRegister =async ( event )=>{
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        if(agree){
-          createUserWithEmailAndPassword(email, password);
-        }
+       
+        // if(agree){
+        //  createUserWithEmailAndPassword(email, password);
+        // }
+       
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        alert('Updated profile')
+        navigate('/home')
       
     }
     return (
-        <div className="from-container ">
+        <div className="from-container d-fl">
             <h1>please register</h1>
-            <div>
+            <div className=''>
                 <form onSubmit={handleRegister}>
                 <input type="name" name="name" placeholder="type your name" required/><br />
                 <input type="email" name="email" placeholder="type your email" required/><br />
@@ -63,6 +74,7 @@ const SingUp = () => {
           </Link>
         </p>
             </div>
+            <Social></Social>
         </div>
     );
 };

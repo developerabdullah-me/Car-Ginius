@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Social from "./Social/Social";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -23,18 +24,12 @@ const Login = () => {
   if(user){
       naviGate('/home')
   }
-  let elementErrors ;
-  if (error) {
-      elementErrors= <div>
-          <p>Error: {error?.message} </p>
-          </div>
-  }
   const naviGateRegister = (event) => {
     naviGate("/register");
   };
   return (
     <div>
-      <h1>login</h1>
+      <h1 className="text-center text-primary">please login</h1>
       <div className="mx-auto w-50">
         <Form onSubmit={handelSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -45,9 +40,7 @@ const Login = () => {
               placeholder="Enter email"
               required
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
+            
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -63,7 +56,7 @@ const Login = () => {
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Submit
+           login
           </Button>
         </Form>
         <p>
@@ -75,9 +68,10 @@ const Login = () => {
           >
             please register
           </Link>
+          
         </p>
+        <Social></Social>
       </div>
-      {elementErrors}
     </div>
   );
 };

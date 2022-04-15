@@ -30,28 +30,26 @@ const Social = () => {
         <div className=" bg-primary w-25" style={{ height: "1px" }}></div>
       </div>
       {elementErrors}
-<div className=" ml-5">
-
-    
-<div className="mx-auto  text-center " style={{}}>
-        <button onClick={() =>signInWithGoogle()} className="btn-primary text-center p-2">
+<div className="mx-auto">
+<div className="  d-block mx-auto mt-2 " style={{}}>
+        <button onClick={() =>signInWithGoogle()} className="btn-primary d-block mx-auto mt-2 p-2">
           {" "}
           <img style={{ width: "30px" }} src={googl} alt="" />
           Google sign in
         </button>
 
-        <button  className="btn-primary text-center p-2">
+        <button  className="btn-primary d-block mx-auto mt-2 p-2">
           {" "}
           <img style={{ width: "30px" }} src={twitter} alt=""/>
           Google twitter
         </button>
-        <button onClick={() =>signInWithGithub()}  className="btn-primary text-center p-2">
+        <button onClick={() =>signInWithGithub()}  className="btn-primary d-block mx-auto mt-2 p-2">
           {" "}
           <img style={{ width: "30px" }} src={github} alt="" />
           Google github
         </button>
 
-        <button className="btn-primary text-center p-2">
+        <button className="btn-primary d-block mx-auto mt-2 p-2">
           {" "}
           <img style={{ width: "30px" }} src={facebook} alt="" />
           facebook sign in
