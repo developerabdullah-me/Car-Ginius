@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
@@ -14,16 +14,20 @@ const SingUp = () => {
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
+      const [agree,setAgree]=useState([])
       if(user){
           naviGate('/home')
       }
+
       const handleRegister = event =>{
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-
-        createUserWithEmailAndPassword(email, password);
+        if(agree){
+          createUserWithEmailAndPassword(email, password);
+        }
+      
     }
     return (
         <div className="from-container ">
@@ -35,10 +39,17 @@ const SingUp = () => {
                 <input type="password" name="password" placeholder="type your password" required/><br />
                 <input type="password" name="name" placeholder="type your confirm password" required/><br />
                 <input type="number" name="number" placeholder="type your number" required/><br />
-                <input type="checkbox" name="terms" id="" />
+                <div className="">
+                <input onClick={()=>setAgree(!agree)} type="checkbox" name="terms" id="" />
+                {/* <label className={agree? "ps-2 text-danger": "ps-2 text-primary"}>Accept car Genius  terms and conditions</label> */}
+                <label className={`ps-2 ${agree ?'':'text-primary'}`}>Accept car Genius  terms and conditions</label>
+                </div>
+               
+
                <div className="d-flex align-items-center">
-               <input type="submit" value="Register" />
-                <label>Accept car Genius  terms and conditions</label>
+               <input disabled={agree} type="submit" value="Register" />
+
+              
                </div>
                 </form>
                 <p>
