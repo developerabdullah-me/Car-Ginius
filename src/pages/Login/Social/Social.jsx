@@ -3,19 +3,20 @@ import googl from "../Social/Images/google-logo.png";
 import facebook from "../Social/Images/Facebook-logo.png";
 import github from "../Social/Images/github-logo.png";
 import twitter from "../Social/Images/twitter-logo.png";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useSignInWithGithub, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { useNavigate } from "react-router-dom";
 const Social = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate=useNavigate()
-    if (user){
+    if (user || user1){
         navigate('/home')
     }
 let elementErrors ;
-    if (error) {
+    if (error || error1) {
         elementErrors= <div>
-            <p>Error: {error.message}</p>
+            <p>Error: {error?.message} {error1?.message}</p>
             </div>
     }
 
@@ -39,15 +40,15 @@ let elementErrors ;
           Google sign in
         </button>
 
-        <button className="btn-primary text-center p-2">
+        <button  className="btn-primary text-center p-2">
           {" "}
           <img style={{ width: "30px" }} src={twitter} alt=""/>
-          Google sign in
+          Google twitter
         </button>
-        <button className="btn-primary text-center p-2">
+        <button onClick={() =>signInWithGithub()}  className="btn-primary text-center p-2">
           {" "}
           <img style={{ width: "30px" }} src={github} alt="" />
-          Google sign in
+          Google github
         </button>
 
         <button className="btn-primary text-center p-2">
