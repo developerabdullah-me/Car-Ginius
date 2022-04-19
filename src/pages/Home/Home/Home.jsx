@@ -6,9 +6,9 @@ import Servieces from '../Services/Servieces';
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
-          <Servieces></Servieces>
-          <Experts></Experts>
+        <Banner></Banner>
+         <Servieces></Servieces>
+         <Experts></Experts>
         </div>
     );
 };

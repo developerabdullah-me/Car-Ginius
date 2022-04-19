@@ -23,6 +23,7 @@ const SingUp = () => {
         // navigate(from, { replace: true });
         console.log(user);
       }
+     
 
       const handleRegister =async ( event )=>{
         event.preventDefault();
