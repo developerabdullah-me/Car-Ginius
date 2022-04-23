@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import './Service.css'
 const Service = (props) => {
-    const {name,img,description,price,id}=props.service;
+    const {name,img,description,price,_id}=props.service;
     const naviGate =useNavigate()
-    const handelUsParams=id=>{
-      naviGate(`/service/${id}`)
+    const handelUsParams=_id=>{
+      naviGate(`/service/${_id}`)
     }
     return (
         <div className='service-Content p-5'>
@@ -15,7 +15,7 @@ const Service = (props) => {
             <h1>{name}</h1>
             <p>Price:{price}</p>
             <p>{description}</p>
-            <button onClick={() =>handelUsParams (id)} className='btn btn-primary '>{name}</button>
+            <button onClick={() =>handelUsParams (_id)} className='btn btn-primary '>{name}</button>
         </div>
     );
 };
