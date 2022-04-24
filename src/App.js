@@ -8,6 +8,7 @@ import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login';
 import RequireAuth from './pages/Login/RequireAuth';
 import SingUp from './pages/Login/SignUp/SingUp';
+import ManageService from './pages/ManageService';
 import Notfownd from './pages/Notfownd/Notfownd';
 import ServiceDettail from './pages/ServiceDettail/ServiceDettail';
 import Footer from './pages/sheare/Footer/Footer';
@@ -26,6 +27,7 @@ function App() {
          <Route path='/register' element={<SingUp></SingUp>}> </Route>
          <Route path='/checkOut' element={<RequireAuth><CheckOut></CheckOut></RequireAuth>}></Route>
         <Route path='/addservice' element={<Addservices></Addservices>}></Route>
+        <Route path='/manageservice' element={<ManageService></ManageService>}></Route>
          <Route path='*' element={<Notfownd></Notfownd>}></Route>
        </Routes>
        <Footer></Footer>
