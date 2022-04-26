@@ -5,14 +5,19 @@ import github from "../Social/Images/github-logo.png";
 import twitter from "../Social/Images/twitter-logo.png";
 import { useSignInWithGithub, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const Social = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate=useNavigate()
-    if (user || user1){
-        navigate('/home')
-    }
+    const location=useLocation()
+    let from = location.state?.from?.pathname || "/";
+
+    if(user){
+      navigate(from, { replace: true });
+        console.log(user);
+      }
+  
   let elementErrors ;
     if (error || error1) {
         elementErrors= <div>

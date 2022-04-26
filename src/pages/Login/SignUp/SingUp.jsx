@@ -20,7 +20,7 @@ const SingUp = () => {
       ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
       const [agree,setAgree]=useState([])
       if(user){
-        // navigate(from, { replace: true });
+      navigate(from, { replace: true });
         console.log(user);
       }
      

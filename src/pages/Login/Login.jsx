@@ -1,20 +1,26 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Social from "./Social/Social";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
-  const naviGate = useNavigate();
+  const navigate = useNavigate();
   const [
     signInWithEmailAndPassword,
     user,
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  const location=useLocation()
+  let from = location.state?.from?.pathname || "/";
+  if(user){
+    navigate(from, { replace: true });
+      console.log(user);
+    }
   const handelSubmit = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
@@ -22,10 +28,10 @@ const Login = () => {
     signInWithEmailAndPassword(email, password)
   };
   if(user){
-      naviGate('/home')
+      navigate('/home')
   }
   const naviGateRegister = (event) => {
-    naviGate("/register");
+    navigate("/register");
   };
   return (
     <div>
