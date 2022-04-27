@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -9,26 +10,23 @@ const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useSignInWithEmailAndPassword(auth);
-  const location=useLocation()
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const location = useLocation();
   let from = location.state?.from?.pathname || "/";
-  if(user){
-    navigate(from, { replace: true });
-      console.log(user);
-    }
-  const handelSubmit = (event) => {
+  // 
+  
+  const handelSubmit = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    signInWithEmailAndPassword(email, password)
+    await signInWithEmailAndPassword(email, password);
+    const {data}=await axios.post('http://localhost:5000/login',{email});
+    localStorage.setItem('accessToken',data.accessToken);
+    navigate(from, { replace: true });
   };
-  if(user){
-      navigate('/home')
+  if (user) {
+    navigate("/home");
   }
   const naviGateRegister = (event) => {
     navigate("/register");
@@ -46,7 +44,6 @@ const Login = () => {
               placeholder="Enter email"
               required
             />
-            
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -62,7 +59,7 @@ const Login = () => {
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <Button variant="primary" type="submit">
-           login
+            login
           </Button>
         </Form>
         <p>
@@ -74,7 +71,6 @@ const Login = () => {
           >
             please register
           </Link>
-          
         </p>
         <Social></Social>
       </div>
